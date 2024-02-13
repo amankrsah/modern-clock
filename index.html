@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Clock</title>
+    <title>Modern Clock</title>
     <!-- <script src="../tailwind.js"></script> -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="clock.png">
+
 </head>
 
 <body class="bg-gradient-to-r from-slate-500 to-red-200" onload="setData(12)">
@@ -16,10 +18,10 @@
     </nav>
 
 
-    <div class="flex flex-col justify-center rounded-lg shadow-md bg-gray-300 mx-40 my-5 bg-gradient-to-r from-slate-200 to-slate-300">
+    <div class="flex flex-col justify-center rounded-lg shadow-md bg-gray-300 mx-10 sm:mx-70  my-5 bg-gradient-to-r from-slate-200 to-slate-300 ">
         <h1 class="text-center mt-5 text-slate-700 text-5xl">Modern-Clock</h1><br>
         <p class="text-center text-slate-500">This is an Ideal 12-Hour Format Clock.<br>Although, you can switch it to 24-Hrs. format from Navbar</p>
-        <div id="timeContainer" class="text-center my-5 text-white text-9xl"><span id="hour" class="text-red-500">--:</span>--:--</div>
+        <div id="timeContainer" class="text-center my-5 text-white text-6xl sm:text-8xl"><span id="hour" class="text-red-500">--:</span>--:--</div>
         <div id="dateContainer" class="text-center font-bold mb-10 mt-4 text-slate-500 text-3xl">--/--/----</div>
     </div>
 </body>
@@ -57,13 +59,13 @@
             if (hh > 12) {
                 hh %= hh;
             }
-            if (hh > 12) {
+            if (hh >= 12) {
                 ss = ss + "<span class='text-5xl text-red-400'>PM</span>"
             } else {
                 ss = ss + "<span class='text-5xl text-red-400'>AM</span>"
             }
         }
-        timeContainer.innerHTML = `<span id="hour" class="text-9xl text-red-500">${hh}</span>${mm}:${ss}`;
+        timeContainer.innerHTML = `<span id="hour" class="text-8xl sm:text-9xl text-red-500">${hh}</span>${mm}:${ss}`;
         document.getElementById("hour").innerText = hh + ":";
         setDate();
     }
