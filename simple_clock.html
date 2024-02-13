@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Clock</title>
+    <!-- <script src="../tailwind.js"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-r from-slate-500 to-red-200" onload="setData(12)">
+    <nav class="flex p-3 bg-slate-700 text-white">
+        <div class="px-5 p-2 hover:bg-slate-300 rounded transition hover:text-slate-900 hover:cursor-pointer hover:scale-105 hover:font-bold hover:ease-linear">Home</div>
+        <div id="hrs" onclick="switchFormat()" class="px-5 p-2 hover:bg-slate-300 rounded transition hover:text-slate-900 hover:cursor-pointer hover:scale-105 hover:font-bold hover:ease-linear">Switch to 24 Hrs-Format</div>
+    </nav>
+
+
+    <div class="flex flex-col justify-center rounded-lg shadow-md bg-gray-300 mx-40 my-5 bg-gradient-to-r from-slate-200 to-slate-300">
+        <h1 class="text-center mt-5 text-slate-700 text-5xl">Modern-Clock</h1><br>
+        <p class="text-center text-slate-500">This is an Ideal 12-Hour Format Clock.<br>Although, you can switch it to 24-Hrs. format from Navbar</p>
+        <div id="timeContainer" class="text-center my-5 text-white text-9xl"><span id="hour" class="text-red-500">--:</span>--:--</div>
+        <div id="dateContainer" class="text-center font-bold mb-10 mt-4 text-slate-500 text-3xl">--/--/----</div>
+    </div>
+</body>
+<script>
+    function addZero(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    console.log("page");
+
+    var currentFormat = 12;
+
+    function switchFormat() {
+        if (currentFormat == 24) {
+            currentFormat = 12;
+            document.getElementById("hrs").innerText = "Switch to 24 Hrs-Format"
+
+        } else {
+            currentFormat = 24;
+            document.getElementById("hrs").innerText = "Switch to 12 Hrs-Format"
+        }
+        setData;
+    }
+
+    function setData(currentFormat) {
+        d1 = new Date();
+        timeContainer = document.getElementById("timeContainer");
+        hh = addZero(d1.getHours());
+        mm = addZero(d1.getMinutes());
+        ss = addZero(d1.getSeconds()) + "s ";
+        // tt = d1.get();
+        if (currentFormat == 12) {
+            if (hh > 12) {
+                hh %= hh;
+            }
+            if (hh > 12) {
+                ss = ss + "<span class='text-5xl text-red-400'>PM</span>"
+            } else {
+                ss = ss + "<span class='text-5xl text-red-400'>AM</span>"
+            }
+        }
+        timeContainer.innerHTML = `<span id="hour" class="text-9xl text-red-500">${hh}</span>${mm}:${ss}`;
+        document.getElementById("hour").innerText = hh + ":";
+        setDate();
+    }
+
+    function setDate() {
+        dateContainer = document.getElementById("dateContainer");
+        d1 = new Date();
+        n = d1.toDateString();
+        // yy = addZero(d1.getYear());
+        // mn = addZero(d1.getMonth());
+        // dd = addZero(d1.getDay());
+        // dateContainer.innerHTML = `${dd}/${mn}/${yy}`;
+        dateContainer.innerHTML = n;
+    }
+
+    setInterval(() => {
+        setData(currentFormat);
+        setDate();
+    }, 500);
+</script>
+
+</html>
