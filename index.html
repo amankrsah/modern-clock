@@ -57,11 +57,12 @@
         ss = addZero(d1.getSeconds()) + "s ";
         // tt = d1.get();
         if (currentFormat == 12) {
+            thh = hh
             if (hh > 12) {
                 hh %= 12;
                 hh = addZero(hh)
             }
-            if (hh >= 12) {
+            if (thh >= 12) {
                 ss = ss + "<span class='text-4xl text-red-400'>PM</span>"
             } else {
                 ss = ss + "<span class='text-4xl text-red-400'>AM</span>"
