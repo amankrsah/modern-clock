@@ -18,7 +18,7 @@
     </nav>
 
 
-    <div class="flex flex-col justify-center rounded-lg shadow-md bg-gray-300 mx-10 sm:mx-70  my-5 bg-gradient-to-r from-slate-200 to-slate-300 ">
+    <div class="flex flex-col justify-center rounded-lg shadow-md bg-gray-300 mx-10 sm:mx-70 p-10 my-5 bg-gradient-to-r from-slate-200 to-slate-300 ">
         <h1 class="text-center mt-5 text-slate-700 text-5xl">Modern-Clock</h1><br>
         <p class="text-center text-slate-500">This is an Ideal 12-Hour Format Clock.<br>Although, you can switch it to 24-Hrs. format from Navbar</p>
         <div id="timeContainer" class="text-center my-5 text-white text-6xl sm:text-8xl"><span id="hour" class="text-red-500">--:</span>--:--</div>
@@ -48,6 +48,7 @@
         setData;
     }
 
+
     function setData(currentFormat) {
         d1 = new Date();
         timeContainer = document.getElementById("timeContainer");
@@ -58,11 +59,13 @@
         if (currentFormat == 12) {
             if (hh > 12) {
                 hh %= hh;
+                hh += 1;
+                hh = addZero(hh)
             }
             if (hh >= 12) {
-                ss = ss + "<span class='text-5xl text-red-400'>PM</span>"
+                ss = ss + "<span class='text-4xl text-red-400'>PM</span>"
             } else {
-                ss = ss + "<span class='text-5xl text-red-400'>AM</span>"
+                ss = ss + "<span class='text-4xl text-red-400'>AM</span>"
             }
         }
         timeContainer.innerHTML = `<span id="hour" class="text-8xl sm:text-9xl text-red-500">${hh}</span>${mm}:${ss}`;
