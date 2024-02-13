@@ -58,8 +58,7 @@
         // tt = d1.get();
         if (currentFormat == 12) {
             if (hh > 12) {
-                hh %= hh;
-                hh += 1;
+                hh %= 12;
                 hh = addZero(hh)
             }
             if (hh >= 12) {
